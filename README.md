@@ -37,3 +37,4 @@ The repository is about to run go code on mobile.
    1. To build the project run `make build-java` or `./gradlew` in the GoInJava folder
    2. It uses Gradle and every time you update the \*.aar file you have to run a build otherwise it does not detect the changes
 9. Start an emulator in Android Studio and load the app there and you can try
+   ![Example](RunningInAndroidJava.png)

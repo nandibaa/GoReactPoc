@@ -8,7 +8,7 @@ The repository is about to run go code on mobile.
 - embed this output into an Android / iOS app mainly with React Native
   - first go is with Android because it is simpler
 
-## Development
+## Part 1. Implementation Java for Android
 
 1. Install golang. Recommended to use goenv.
 2. Install JDK (required by gomobile as well) - version 17 will do it for not. Recommend to use some tool - I have used SDKMAN for it.
@@ -38,3 +38,17 @@ The repository is about to run go code on mobile.
    2. It uses Gradle and every time you update the \*.aar file you have to run a build otherwise it does not detect the changes
 9. Start an emulator in Android Studio and load the app there and you can try
    ![Example](RunningInAndroidJava.png)
+
+## Part 2. Implementation with React Native
+
+1. Create new Expo app for react native - select Blank (TypeScript). `npx create-expo-app --template` I named it GoInReact.
+2. Now a Kotlin/Java wrapper required. cd GoInReact and create expo module `npx create-expo-module@latest --local`. I used the following namings.
+   ✔ What is the name of the local module? … calculator
+   ✔ What is the native module name? … Calculator
+   ✔ What is the Android package name? … expo.module.gocalculator
+3. That command created a structure under module and the CalculatorModule class.
+   This class should be implemented for each platform and in this layer the golang lib call can be achieved.
+4. For testing run npm start which will open App.tsx. This React Component calls out for the module created above and the underlying implementation will be called depending on the platform:
+   1. Web = CalculatorModule.web.ts
+   2. Android = CalculatorModule.kt
+   3. iOS = CalculatorModule.swift

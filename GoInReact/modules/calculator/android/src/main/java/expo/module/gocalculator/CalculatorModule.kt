@@ -4,6 +4,8 @@ import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import java.net.URL
 
+import calculator.Calculator as calculator
+
 class CalculatorModule : Module() {
   // Each module class must implement the definition function. The definition consists of components
   // that describes the module's functionality and behavior.
@@ -24,7 +26,9 @@ class CalculatorModule : Module() {
 
     // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
     Function("hello") {
-      "Hello world! 👋"
+       var sum = calculator.add(3.0, 5.0)
+
+      "3+5 is $sum!"
     }
 
     // Defines a JavaScript function that always returns a Promise and whose native code

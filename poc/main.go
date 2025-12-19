@@ -1,4 +1,4 @@
-package golang
+package calculator
 
 import "fmt"
 

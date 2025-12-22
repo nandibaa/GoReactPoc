@@ -31,8 +31,17 @@ The repository is about to run go code on mobile.
 5. You maybe need to run `go install golang.org/x/mobile/cmd/gomobile@latest` check it by execute `gomoblie` command in the terminal
 6. Run `make install` in project root
 7. Run `make pre-build-java` in project root - or check the Makefile if you want to do things manually - what this does is:
+
    1. use gomobile to compile go code
-   2. copy the binary where the GoInJava app expects it to be
+   2. copy the binary where the GoInJava app expects it to be (/app/libs)
+   3. Add the following to the build.gradle file
+
+   ```gradle
+   dependencies {
+           implementation fileTree(dir: 'libs', include: ['*.aar'])
+      }
+   ```
+
 8. GoInJava project is in Android Studio
    1. To build the project run `make build-java-android` or `./gradlew` in the GoInJava folder
    2. It uses Gradle and every time you update the \*.aar file you have to run a build otherwise it does not detect the changes
@@ -53,7 +62,7 @@ The repository is about to run go code on mobile.
    1. Web = CalculatorModule.web.ts
    2. Android = CalculatorModule.kt
    3. iOS = CalculatorModule.swift
-5. After the module created have to build the whole together with Gradle otherwise **it will not work** . Use the following command: `npx expo prebuild --clean --platform android`
+5. After the module created have to build the whole together with Gradle otherwise **it will not work**. Use the following command to cleanup the sample generated code: `npx expo prebuild --clean --platform android`
 6. Execute `npm run android` in GoInReact folder and it should result like this:
 
 ![First run with react](FirstRunWithReact.png)
